@@ -25,5 +25,14 @@ namespace InlandMarinaData
             
             return customer; //this will either be null or an object
         }
+
+        public static void Add(Customer customer)
+        {
+            using (InlandMarinaContext dB = new InlandMarinaContext())
+            {
+                dB.Customers.Add(customer);
+                dB.SaveChanges();
+            }
+        }
     }
 }

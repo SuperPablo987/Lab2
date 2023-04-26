@@ -4,7 +4,7 @@
 
 namespace InlandMarinaData.Migrations
 {
-    public partial class Initial : Migration
+    public partial class UsernamePasswords : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,9 @@ namespace InlandMarinaData.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    City = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
+                    City = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,12 +90,12 @@ namespace InlandMarinaData.Migrations
 
             migrationBuilder.InsertData(
                 table: "Customer",
-                columns: new[] { "ID", "City", "FirstName", "LastName", "Phone" },
+                columns: new[] { "ID", "City", "FirstName", "LastName", "Password", "Phone", "Username" },
                 values: new object[,]
                 {
-                    { 1, "Phoenix", "John", "Doe", "265-555-1212" },
-                    { 2, "Calgary", "Sara", "Williams", "403-555-9585" },
-                    { 3, "Kansas City", "Ken", "Wong", "802-555-3214" }
+                    { 1, "Phoenix", "John", "Doe", "password", "265-555-1212", "jdoe" },
+                    { 2, "Calgary", "Sara", "Williams", "password", "403-555-9585", "swilliams" },
+                    { 3, "Kansas City", "Ken", "Wong", "password", "802-555-3214", "kwong" }
                 });
 
             migrationBuilder.InsertData(

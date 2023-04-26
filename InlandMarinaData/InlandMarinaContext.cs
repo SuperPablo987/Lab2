@@ -20,7 +20,11 @@ namespace InlandMarinaData
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Change the connection string here for your home computer/lab computer
-            optionsBuilder.UseSqlServer(@"Server=SAIT229383;
+            //optionsBuilder.UseSqlServer(@"Server=SAIT229383;
+            //                              Database=InlandMarina;
+            //                              Trusted_Connection=True;"
+            //);
+            optionsBuilder.UseSqlServer(@"Server=localhost\sqlexpress;
                                           Database=InlandMarina;
                                           Trusted_Connection=True;"
             );

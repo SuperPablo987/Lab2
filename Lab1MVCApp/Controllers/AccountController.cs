@@ -18,6 +18,25 @@ namespace Lab2MVCApp.Controllers
             }
             return View();
         }
+        // register
+        public ActionResult Create()
+        {
+            return View();
+        }
+        // when user is registered / new customer created
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            try
+            {
+                CustomerManager.Add(customer);
+                return RedirectToAction("Login", "Account");
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         [HttpPost]
         public async Task<IActionResult> LoginAsync(Customer customer) // data collected on the form

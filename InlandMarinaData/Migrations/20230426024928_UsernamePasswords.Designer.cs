@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InlandMarinaData.Migrations
 {
     [DbContext(typeof(InlandMarinaContext))]
-    [Migration("20230419143056_Initial")]
-    partial class Initial
+    [Migration("20230426024928_UsernamePasswords")]
+    partial class UsernamePasswords
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,10 +46,20 @@ namespace InlandMarinaData.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("ID");
 
@@ -62,7 +72,9 @@ namespace InlandMarinaData.Migrations
                             City = "Phoenix",
                             FirstName = "John",
                             LastName = "Doe",
-                            Phone = "265-555-1212"
+                            Password = "password",
+                            Phone = "265-555-1212",
+                            Username = "jdoe"
                         },
                         new
                         {
@@ -70,7 +82,9 @@ namespace InlandMarinaData.Migrations
                             City = "Calgary",
                             FirstName = "Sara",
                             LastName = "Williams",
-                            Phone = "403-555-9585"
+                            Password = "password",
+                            Phone = "403-555-9585",
+                            Username = "swilliams"
                         },
                         new
                         {
@@ -78,7 +92,9 @@ namespace InlandMarinaData.Migrations
                             City = "Kansas City",
                             FirstName = "Ken",
                             LastName = "Wong",
-                            Phone = "802-555-3214"
+                            Password = "password",
+                            Phone = "802-555-3214",
+                            Username = "kwong"
                         });
                 });
 
