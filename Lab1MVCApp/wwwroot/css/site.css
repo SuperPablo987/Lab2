@@ -16,3 +16,7 @@ html {
 body {
   margin-bottom: 60px;
 }
+.spacer{
+    width: 30vw;
+    flex-shrink:5;
+}

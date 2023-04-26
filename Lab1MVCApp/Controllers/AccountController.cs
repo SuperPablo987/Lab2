@@ -48,7 +48,8 @@ namespace Lab2MVCApp.Controllers
             }
             // usr != null - authentication passed
 
-           
+            HttpContext.Session.SetInt32("CurrentCustomer", (int)cust.ID);
+
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, cust.Username),
@@ -84,5 +85,6 @@ namespace Lab2MVCApp.Controllers
         {
             return View();
         }
+
     }
 }

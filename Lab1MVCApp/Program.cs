@@ -30,6 +30,8 @@ app.UseAuthentication(); // add for Authentication
 
 app.UseAuthorization();
 
+app.UseSession(); // for session state
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

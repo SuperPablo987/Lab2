@@ -30,7 +30,7 @@ namespace InlandMarinaData
         /// </summary>
         /// <param name="id">id for given customer</param>
         /// <returns>list of all leases or none if null</returns>
-        public static List<Lease> GetLeaseByCustomer(int id)
+        public static List<Lease> GetLeasesByCustomer(int id)
         {
             List<Lease> leases = null;
             using (InlandMarinaContext dB = new InlandMarinaContext())

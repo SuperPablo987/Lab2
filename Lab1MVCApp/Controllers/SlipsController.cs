@@ -1,4 +1,5 @@
 ﻿using InlandMarinaData;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -110,6 +111,20 @@ namespace Lab1MVCApp.Controllers
                 return View();
             }
         }
+
+        [Authorize]
+        // displays logged in customers slips
+        public ActionResult MySlips()
+        {
+            int? customerID = HttpContext.Session.GetInt32("CurrentCustomer");
+            if(customerID == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            
+            return View("View"); 
+        }
+
 
         // GET: SlipsController/Edit/5
         public ActionResult Edit(int id)
