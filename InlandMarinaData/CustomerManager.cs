@@ -25,7 +25,10 @@ namespace InlandMarinaData
             
             return customer; //this will either be null or an object
         }
-
+        /// <summary>
+        /// adds new customer to the database
+        /// </summary>
+        /// <param name="customer">customer data to add</param>
         public static void Add(Customer customer)
         {
             using (InlandMarinaContext dB = new InlandMarinaContext())

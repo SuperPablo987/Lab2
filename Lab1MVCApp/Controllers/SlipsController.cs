@@ -170,12 +170,14 @@ namespace Lab1MVCApp.Controllers
         // POST: SlipsController/Lease/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Lease(int id, Slip slip2Lease)
+        public ActionResult Lease(int id, Lease lease)
         {
             try
             {
+                lease = new Lease();
                 int? customerID = HttpContext.Session.GetInt32("CurrentCustomer");
-                return RedirectToAction(nameof(Index));
+                LeaseManager.LeaseSlip(id, (int)customerID,lease);
+                return RedirectToAction("MySlips", "Slips");
             }
             catch
             {
