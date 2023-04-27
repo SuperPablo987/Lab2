@@ -1,0 +1,42 @@
+﻿@model InlandMarinaData.Slip
+
+@{
+    ViewData["Title"] = "Lease";
+}
+
+<h3>Are you sure you want to Lease this?</h3>
+<div>
+    <h4>Slip</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Width)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Width)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Length)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Length)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DockID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DockID)
+        </dd>
+    </dl>
+    
+    <form asp-action="Lease">
+        <input type="submit" value="Lease" class="btn btn-success" /> |
+        <a asp-action="MySlips">Back to List</a>
+    </form>
+</div>

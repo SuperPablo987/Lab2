@@ -53,5 +53,21 @@ namespace InlandMarinaData
             }
             return leases;
         }
+
+        public static void LeaseSlip(int id, int customerId, Slip slip2Lease)
+        {
+            Lease? lease = null;
+            using (InlandMarinaContext dB = new InlandMarinaContext())
+            {
+                if(lease != null)
+                {
+                    lease = dB.Leases.Find(id);
+                    lease.SlipID = slip2Lease.ID;
+                    lease.CustomerID = customerId;
+                    dB.SaveChanges();
+                }
+                
+            }
+        }
     }
 }

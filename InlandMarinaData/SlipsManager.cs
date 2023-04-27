@@ -45,7 +45,38 @@ namespace InlandMarinaData
             }
             return slips;
         }
+        /// <summary>
+        /// returns a list of slips which are leased by the logged in customer's id
+        /// </summary>
+        /// <param name="id">the id of the logged in user</param>
+        /// <returns>list of slips registered by logged in user or null if none</returns>
+        public static List<Slip> GetMySlips(int id)
+        {
+            List<Slip> slips = null;
+            using (InlandMarinaContext dB = new InlandMarinaContext())
+            {
+                // Retrieve the list of SlipIDs from the Lease table
+                List<int> leasedSlipIDs = dB.Leases.Where(l => l.CustomerID == id)
+                                          .Select(l => l.SlipID)
+                                          .ToList();
 
-        
+                // Use the Where() method to filter the Slip records by SlipID
+                slips = dB.Slips.Include(d => d.Dock)
+                        .Where(s => leasedSlipIDs.Contains(s.ID))
+                        .ToList();
+            }
+            return slips;
+        }
+
+        public static Slip? SlipToLease(int id)
+        {
+            Slip? slip2Lease = null;
+            using (InlandMarinaContext dB = new InlandMarinaContext())
+            {
+                slip2Lease = dB.Slips.Find(id);
+            }
+            return slip2Lease;
+        }
+
     }
 }

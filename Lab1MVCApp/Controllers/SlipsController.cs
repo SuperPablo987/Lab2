@@ -117,12 +117,17 @@ namespace Lab1MVCApp.Controllers
         public ActionResult MySlips()
         {
             int? customerID = HttpContext.Session.GetInt32("CurrentCustomer");
+            List<Slip> slips = null;
             if(customerID == null)
             {
                 return RedirectToAction("Login", "Account");
             }
+            else // customerID != null
+            {
+                slips = SlipsManager.GetMySlips((int)customerID);
+            }
             
-            return View("View"); 
+            return View(slips); 
         }
 
 
@@ -146,20 +151,30 @@ namespace Lab1MVCApp.Controllers
                 return View();
             }
         }
-
-        // GET: SlipsController/Delete/5
-        public ActionResult Delete(int id)
+        [Authorize]
+        // GET: SlipsController/Lease/5
+        public ActionResult Lease(int id)
         {
-            return View();
+            int? customerID = HttpContext.Session.GetInt32("CurrentCustomer");
+            if (customerID == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                Slip? slip = SlipsManager.SlipToLease(id);
+                return View(slip);
+            }
         }
 
-        // POST: SlipsController/Delete/5
+        // POST: SlipsController/Lease/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Lease(int id, Slip slip2Lease)
         {
             try
             {
+                int? customerID = HttpContext.Session.GetInt32("CurrentCustomer");
                 return RedirectToAction(nameof(Index));
             }
             catch
